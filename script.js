@@ -8,12 +8,13 @@ let score = 0;
 let gameActive = false;
 let playerPos = window.innerWidth / 2;
 
-// Səslər
+// Hello Kitty-nin şəkli
+player.style.backgroundImage = "url('visuals/hello-kitty.png')";
+
 const catchSound = document.getElementById('sound-catch');
 const explosionSound = document.getElementById('sound-explosion');
 const fuseSound = document.getElementById('sound-bomb-fuse');
 
-// Başla düyməsi
 startBtn.addEventListener('click', () => {
     startScreen.style.display = 'none';
     gameActive = true;
@@ -21,7 +22,6 @@ startBtn.addEventListener('click', () => {
     startGame();
 });
 
-// Hello Kitty-ni hərəkət etdir
 document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft' && playerPos > 0) playerPos -= 30;
     if (e.key === 'ArrowRight' && playerPos < window.innerWidth - 80) playerPos += 30;
@@ -32,20 +32,27 @@ function createFallingObject() {
     if (!gameActive) return;
 
     const obj = document.createElement('div');
-    const isBomb = Math.random() < 0.3; // 30% ehtimalla bomba düşür
+    const isBomb = Math.random() < 0.3;
     obj.className = isBomb ? 'bomb' : 'candy';
+    
+    // Şəkillərin qovluq ünvanları
+    if (isBomb) {
+        obj.style.backgroundImage = "url('visuals/bomb.png')";
+        fuseSound.play();
+    } else {
+        obj.style.backgroundImage = "url('visuals/candy.png')";
+    }
+
     obj.style.left = Math.random() * (window.innerWidth - 50) + 'px';
     obj.style.top = '-50px';
     gameContainer.appendChild(obj);
-
-    if (isBomb) fuseSound.play(); // Bomba çıxanda yanan fitili səsi
 
     let fallInterval = setInterval(() => {
         let top = parseInt(obj.style.top);
         if (top > window.innerHeight) {
             clearInterval(fallInterval);
             obj.remove();
-            if (isBomb) fuseSound.pause(); // Bomba düşüb itəndə səs kəsilsin
+            if (isBomb) fuseSound.pause();
         } else {
             obj.style.top = top + 5 + 'px';
             checkCollision(obj, isBomb, fallInterval);
@@ -60,7 +67,7 @@ function checkCollision(obj, isBomb, interval) {
     if (oRect.bottom > pRect.top && oRect.left < pRect.right && oRect.right > pRect.left) {
         clearInterval(interval);
         obj.remove();
-        
+
         if (isBomb) {
             endGame();
         } else {
