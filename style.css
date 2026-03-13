@@ -9,7 +9,6 @@ body {
 #game-container {
     width: 100vw;
     height: 100vh;
-    /* Şəkil visuals qovluğunda olduğu üçün ünvan belə olmalıdır: */
     background: url('visuals/pink-clouds-rainbow.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
@@ -51,3 +50,4 @@ body {
 #score {
     padding: 20px; font-size: 24px; color: #ff69b4; font-weight: bold;
 }
+
