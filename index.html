@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="az">
 <head>
@@ -11,11 +12,12 @@
         <div id="start-screen" class="overlay">
             <h1>Hello Kitty Konfet Ovunda</h1>
             <div class="rules">
-                <p>🎀 *Qaydalar:*</p>
+                <p>🎀 Qaydalar:</p>
                 <ul>
                     <li>Sağ-sol oxları ilə Hello Kittyni hərəkət etdir.</li>
                     <li>Göydən düşən konfetləri tut və xal qazan! 🍬</li>
-                    <li>Bombalardan qaç! Partlasan oyun bitər. 💣</li>
+                    <li>Ürək tut — can qazan! 💖</li>
+                    <li>Bombalardan qaç! 3 can bitəndə oyun bitər. 💣</li>
                 </ul>
             </div>
             <button id="start-btn">Oyuna Başla</button>
@@ -24,6 +26,8 @@
         <div id="score">Xal: 0</div>
         <div id="player"></div>
 
+        <button id="music-btn">🎵</button>
+
         <div id="game-over-screen" class="overlay" style="display:none;">
             <h1>OYUN BİTDİ! 😿</h1>
             <p id="final-score">Xalın: 0</p>
@@ -31,10 +35,12 @@
         </div>
     </div>
 
-    <audio id="sound-start" src="audio/start.mp3"></audio>
-    <audio id="sound-catch" src="audio/candy.mp3"></audio>
-    <audio id="sound-bomb-fuse" src="audio/fuse.mp3" loop></audio>
-    <audio id="sound-explosion" src="audio/explosion.mp3"></audio>
+    <audio id="sound-start" src="start.mp3" loop></audio>
+    <audio id="sound-catch" src="candy.mp3"></audio>
+    <audio id="sound-bomb-fuse" src="fuse.mp3" loop></audio>
+    <audio id="sound-explosion" src="explosion.mp3"></audio>
+    <audio id="sound-heart" src="candy.mp3"></audio>
+    <audio id="sound-click" src="click.mp3"></audio>
 
     <script src="script.js"></script>
 </body>
