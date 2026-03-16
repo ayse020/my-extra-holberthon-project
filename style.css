@@ -9,7 +9,7 @@ body {
 #game-container {
     width: 100vw;
     height: 100vh;
-    background: url('visuals/pink-clouds-rainbow.jpg') no-repeat center center;
+    background: url('pink-clouds-rainbow.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
 }
@@ -25,29 +25,105 @@ body {
 
 #player {
     width: 80px; height: 80px;
-    background: url('visuals/hello-kitty.png') no-repeat center center;
+    background: url('hello-kitty.png') no-repeat center center;
     background-size: contain;
     position: absolute;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
+    transition: opacity 0.15s;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.15; }
+}
+
+#player.blinking {
+    animation: blink 0.3s infinite;
 }
 
 .candy {
     width: 40px; height: 40px;
-    background: url('visuals/candy.png') no-repeat center center;
+    background: url('candy.png') no-repeat center center;
     background-size: contain;
     position: absolute;
 }
 
 .bomb {
     width: 50px; height: 50px;
-    background: url('visuals/bomb.png') no-repeat center center;
+    background: url('bomb.png') no-repeat center center;
     background-size: contain;
     position: absolute;
 }
 
-#score {
-    padding: 20px; font-size: 24px; color: #ff69b4; font-weight: bold;
+.heart-item {
+    width: 45px; height: 45px;
+    position: absolute;
+    cursor: default;
+    user-select: none;
 }
 
+#score {
+    padding: 20px;
+    font-size: 24px;
+    color: #ff69b4;
+    font-weight: bold;
+}
+
+#lives-display {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    display: flex;
+    gap: 6px;
+    z-index: 5;
+}
+
+#lives-display .heart {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.3s;
+}
+
+#lives-display .heart.active {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 4px #ff69b4);
+}
+
+#lives-display .heart.lost {
+    opacity: 0.25;
+    transform: scale(0.85);
+    filter: grayscale(1);
+}
+
+#music-btn {
+    position: absolute;
+    top: 70px;
+    left: 16px;
+    z-index: 15;
+    background: rgba(255, 105, 180, 0.85);
+    border: 2px solid #ff1493;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(255,20,147,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.1s;
+}
+
+#music-btn:hover {
+    background: rgba(255, 20, 147, 0.9);
+    transform: scale(1.1);
+}
+
+#music-btn.muted {
+    background: rgba(180, 180, 180, 0.7);
+    border-color: #aaa;
+}
